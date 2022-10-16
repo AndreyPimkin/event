@@ -1,6 +1,8 @@
 package server;
 
 
+import com.example.event.Authorization;
+
 import java.sql.*;
 
 
@@ -32,11 +34,10 @@ public class DatabaseHandler extends Configs {
         return resSet;
     }
 
-    public ResultSet getUserLoginAndPassword(User user){
+    public ResultSet getModerator(User user){
         ResultSet resSet = null;
 
-        String select = "SELECT * FROM " + Const.NAME_TABLE + " Where "+
-                Const.EMAIL + " =? AND " + Const.PASSWORD + " =?";
+        String select = "SELECT FROM moderaotr WHERE modereator_id = ? AND password =?"  ;
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
@@ -50,13 +51,14 @@ public class DatabaseHandler extends Configs {
         return resSet;
     }
 
-    public ResultSet  getRoles(User user){
+    public ResultSet getOrganizator(User user){
         ResultSet resSet = null;
-        String select = "SELECT " + Const.ROLES + " FROM " + Const.NAME_TABLE + " WHERE "+
-                Const.EMAIL + " =?" + " AND " + Const.PASSWORD + " =?";
+
+        String select = "SELECT FROM organizator WHERE organizator_id = ? AND password =?"  ;
 
         try {
-            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
+
             prSt.setString(1, user.getEmail());
             prSt.setString(2, user.getPassword());
             resSet = prSt.executeQuery();
@@ -64,13 +66,46 @@ public class DatabaseHandler extends Configs {
             e.printStackTrace();
         }
         return resSet;
-
     }
+    public ResultSet getJury(User user){
+        ResultSet resSet = null;
+
+        String select = "SELECT FROM jury WHERE jury_id = ? AND password =?"  ;
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
+
+            prSt.setString(1, user.getEmail());
+            prSt.setString(2, user.getPassword());
+            resSet = prSt.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
+    public ResultSet getMember(User user){
+        ResultSet resSet = null;
+
+        String select = "SELECT FROM member WHERE member_id = ? AND password =?"  ;
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
+
+            prSt.setString(1, user.getEmail());
+            prSt.setString(2, user.getPassword());
+            resSet = prSt.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
+
+
+
 
     public ResultSet  getName(User user){
         ResultSet resSet = null;
-        String select = "SELECT Firstname FROM " + Const.NAME_TABLE + " WHERE "+
-                Const.EMAIL + " =?" + " AND " + Const.PASSWORD + " =?";
+        String select = "SELECT Firstname FROM " + Authorization.role + " WHERE " +  Authorization.roleID + " =?" + " AND passsword =?";
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);

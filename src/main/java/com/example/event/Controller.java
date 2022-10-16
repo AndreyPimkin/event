@@ -63,7 +63,7 @@ public class Controller {
             e.printStackTrace();
         }
         authorization_button.setOnAction(actionEvent -> {
-            openAuthorization("/com/example/event/Authorization.fxml");
+            openAuthorization("/com/example/event/authorization.fxml");
         });
         labelText.setText("Добрый день!");
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("eventColumn"));
