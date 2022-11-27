@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.AddEvent">
+   <children>
+      <Label alignment="CENTER" layoutX="15.0" layoutY="20.0" prefHeight="32.0" prefWidth="53.0" text="Начало">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="12.0" layoutY="60.0" prefHeight="32.0" prefWidth="82.0" text="Окончание">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="13.0" layoutY="100.0" prefHeight="32.0" prefWidth="89.0" text="Меропиятия">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="140.0" prefHeight="32.0" prefWidth="95.0" text="Направление">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="15.0" layoutY="240.0" prefHeight="32.0" prefWidth="82.0" text="Активности">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="180.0" prefHeight="32.0" prefWidth="43.0" text="Город">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="direction" layoutX="125.0" layoutY="143.0" prefHeight="25.0" prefWidth="250.0" />
+      <ComboBox fx:id="event" layoutX="124.0" layoutY="104.0" prefHeight="25.0" prefWidth="250.0" />
+      <ComboBox fx:id="city" layoutX="125.0" layoutY="184.0" prefHeight="25.0" prefWidth="250.0" />
+      <DatePicker fx:id="fromDate" layoutX="125.0" layoutY="24.0" prefHeight="25.0" prefWidth="125.0" />
+      <Label alignment="CENTER" layoutX="213.0" layoutY="240.0" prefHeight="32.0" prefWidth="114.0" text="Наименование">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="441.0" layoutY="240.0" prefHeight="32.0" prefWidth="71.0" text="Время">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="541.0" layoutY="240.0" prefHeight="32.0" prefWidth="89.0" text="Жюри">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameOne" layoutX="120.0" layoutY="290.0" prefWidth="300.0" />
+      <TextField fx:id="nameTwo" layoutX="120.0" layoutY="330.0" prefWidth="300.0" />
+      <TextField fx:id="nameThree" layoutX="120.0" layoutY="370.0" prefWidth="300.0" />
+      <ComboBox fx:id="juryOne" layoutX="545.0" layoutY="290.0" prefHeight="25.0" prefWidth="82.0" />
+      <ComboBox fx:id="juryTwo" layoutX="545.0" layoutY="330.0" prefHeight="25.0" prefWidth="82.0" />
+      <ComboBox fx:id="juryThree" layoutX="545.0" layoutY="370.0" prefHeight="25.0" prefWidth="82.0" />
+      <Button fx:id="okButton" layoutX="464.0" layoutY="404.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" text="Ок">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="doska" layoutX="506.0" layoutY="124.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" text="Доска">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="csv" layoutX="506.0" layoutY="72.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" text="CSV">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <TextField layoutX="443.0" layoutY="24.0" prefHeight="25.0" prefWidth="195.0" />
+      <TextField fx:id="fromTime" layoutX="277.0" layoutY="24.0" prefHeight="25.0" prefWidth="95.0" />
+      <TextField fx:id="day" layoutX="125.0" layoutY="64.0" prefHeight="25.0" prefWidth="95.0" />
+      <TextField fx:id="timeOne" layoutX="435.0" layoutY="290.0" prefHeight="25.0" prefWidth="89.0" />
+      <TextField fx:id="timeTwo" layoutX="435.0" layoutY="330.0" prefHeight="25.0" prefWidth="89.0" />
+      <TextField fx:id="timeThree" layoutX="435.0" layoutY="370.0" prefHeight="25.0" prefWidth="89.0" />
+   </children>
+</Pane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.Organizator">
+   <children>
+      <ImageView fx:id="image" fitHeight="230.0" fitWidth="257.0" layoutX="20.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="myProf" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="313.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="102.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 15; -fx-wrap-text: true;" text="Мой профиль" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="events" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="61.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="280.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 15; -fx-wrap-text: true;" text="Меропрития" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="members" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="151.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="280.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 15; -fx-wrap-text: true;" text="Участники" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="jurys" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="241.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="280.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 15; -fx-wrap-text: true;" text="Жюри" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="4.0" prefHeight="53.0" prefWidth="568.0" text="Hello" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

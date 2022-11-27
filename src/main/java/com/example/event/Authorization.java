@@ -15,20 +15,13 @@ import server.DatabaseHandler;
 import server.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Authorization{
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField login;
@@ -46,20 +39,24 @@ public class Authorization{
     private Label text;
 
     public static String nameUser;
+    public static String imageUser;
 
     public static String role;
     public static String roleID;
+    public static String ID;
+    public static String passwordUser;
 
     private int score = 0;
 
     @FXML
     void initialize() {
-        if (score == 3){
-            open.setDisable(true);
-            timerCode();
-        }
+
         open.setDisable(false);
         open.setOnAction(actionEvent -> {
+            if (score == 3){
+                open.setDisable(true);
+                timerCode();
+            }
             if (Captcha.check == 1){
                 openWindow("/com/example/event/"+ role +".fxml");
             }
@@ -71,7 +68,8 @@ public class Authorization{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {
+            }
+            else {
                 text.setText("Пустые данные");
                 score++;
 
@@ -92,36 +90,49 @@ public class Authorization{
         ResultSet resultOrg = dbHandler.getOrganizator(user);
         ResultSet resultMod = dbHandler.getModerator(user);
         ResultSet resultName;
+        ResultSet resultImage;
 
 
-        if(resultJury .next()){
+        if(resultJury .next() && Captcha.check == 0){
             role = "jury";
             roleID = "jury_id";
-            resultName = dbHandler.getName(user);
-            nameUser = resultName.getString("full_name");
+           // resultName = dbHandler.getName(user);
+            //nameUser = resultName.getString("full_name");
             openModal("/com/example/event/captcha.fxml");
 
         }
-        else if(resultMember.next()){
+        else if(resultMember.next() && Captcha.check == 0){
             role = "member";
             roleID = "member_id";
-            resultName = dbHandler.getName(user);
-            nameUser = resultName.getString("full_name");
+           // resultName = dbHandler.getName(user);
+           // nameUser = resultName.getString("full_name");
             openModal("/com/example/event/captcha.fxml");
         }
-        else if(resultOrg.next()){
+        else if(resultOrg.next() && Captcha.check == 0){
+            ID = loginText;
+            passwordUser = passwordText;
             role = "organizator";
             roleID = "organizator_id";
             resultName = dbHandler.getName(user);
-            nameUser = resultName.getString("full_name");
+            resultImage = dbHandler.getImage(user);
+
+
+            if(resultImage.next()){
+                imageUser = resultImage.getString("image");
+            }
+
+            if(resultName.next()){
+                nameUser = resultName.getString("full_name");
+            }
+
             openModal("/com/example/event/captcha.fxml");
 
         }
-        else if(resultMod.next()){
+        else if(resultMod.next() && Captcha.check == 0){
             role = "moderator";
             roleID = "moderator_id";
-            resultName = dbHandler.getName(user);
-            nameUser = resultName.getString("full_name");
+           // resultName = dbHandler.getName(user);
+           // nameUser = resultName.getString("full_name");
             openModal("/com/example/event/captcha.fxml");
 
         }
@@ -160,7 +171,7 @@ public class Authorization{
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene((new Scene(root)));
-        stage.getIcons().add(new Image("file:src/main/resources/picture/icon.png"));
+        stage.getIcons().add(new Image("file:src/main/resources/com/example/event/picture/icon.png"));
         stage.setTitle(role);
         stage.show();
     }
@@ -175,9 +186,9 @@ public class Authorization{
                 i--;
                 if (i < 0) {
                     open.setDisable(false);
+                    score = 0;
                     timer.cancel();
                 }
-
             }
         }, 0, 1000);
     }

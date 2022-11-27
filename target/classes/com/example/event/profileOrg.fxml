@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.ProfileOrg">
+   <children>
+      <PasswordField fx:id="passwordOne" layoutX="486.0" layoutY="299.0" prefHeight="34.0" prefWidth="210.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5;">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </PasswordField>
+      <Label alignment="CENTER" layoutX="271.0" layoutY="14.0" prefHeight="32.0" prefWidth="197.0" text="Мой профиль">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="92.0" layoutY="100.0" prefHeight="32.0" prefWidth="47.0" text="ФИО:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="94.0" layoutY="140.0" prefHeight="32.0" prefWidth="47.0" text="Пол:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="9.0" layoutY="180.0" prefHeight="32.0" prefWidth="133.0" text="Дата рождения:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="44.0" layoutY="220.0" prefHeight="32.0" prefWidth="96.0" text="ID Number:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="69.0" layoutY="260.0" prefHeight="32.0" prefWidth="71.0" text="Страна:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="64.0" layoutY="300.0" prefHeight="32.0" prefWidth="71.0" text="Телефон:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="84.0" layoutY="340.0" prefHeight="32.0" prefWidth="54.0" text="Email:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fullName" layoutX="146.0" layoutY="102.0" prefHeight="30.0" prefWidth="249.0" promptText="LI-Zhi" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="male" layoutX="146.0" layoutY="141.0" prefHeight="30.0" prefWidth="249.0" promptText="Male" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="birthday" layoutX="146.0" layoutY="181.0" prefHeight="30.0" prefWidth="249.0" promptText="1995-01-02" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="idNumber" layoutX="146.0" layoutY="221.0" prefHeight="30.0" prefWidth="249.0" promptText="12010119" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="country" layoutX="146.0" layoutY="261.0" prefHeight="30.0" prefWidth="249.0" promptText="Qing Hai (63000)" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="numberPhone" layoutX="146.0" layoutY="301.0" prefHeight="30.0" prefWidth="249.0" promptText="7(744)580-33-62" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="email" layoutX="146.0" layoutY="339.0" prefHeight="30.0" prefWidth="249.0" promptText="g4fjtzm3qyx9@mail.com" style="-fx-background-color: none;">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="okButton" layoutX="490.0" layoutY="415.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" text="Ок">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="noButton" layoutX="600.0" layoutY="415.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" text="Отмена">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="passwordTwo" layoutX="486.0" layoutY="339.0" prefHeight="34.0" prefWidth="210.0" promptText="Re-enter password" style="-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5;">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </PasswordField>
+      <Label alignment="CENTER" layoutX="360.0" layoutY="340.0" prefHeight="32.0" prefWidth="120.0" text="Повтор пароля:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="414.0" layoutY="300.0" prefHeight="32.0" prefWidth="63.0" text="Пароль:">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="muskPassword" layoutX="460.0" layoutY="384.0" mnemonicParsing="false" text="Видимый пароль">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="changePassword" layoutX="460.0" layoutY="266.0" mnemonicParsing="false" text="Смена пароля">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <ImageView fx:id="image" fitHeight="182.0" fitWidth="260.0" layoutX="426.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="passwordThree" layoutX="486.0" layoutY="299.0" prefHeight="34.0" prefWidth="210.0" promptText="Password" style="-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5;">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="passwordFour" layoutX="486.0" layoutY="339.0" prefHeight="34.0" prefWidth="210.0" promptText="Re-enter password" style="-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5;">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

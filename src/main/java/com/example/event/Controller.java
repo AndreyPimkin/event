@@ -1,27 +1,26 @@
 package com.example.event;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.ResourceBundle;
-
 import POJO.MainTable;
-import server.DatabaseHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import server.DatabaseHandler;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.ResourceBundle;
 
 public class Controller {
 
@@ -54,6 +53,10 @@ public class Controller {
 
     DatabaseHandler dbHandler = new DatabaseHandler();
     private final ObservableList<MainTable> eventList = FXCollections.observableArrayList();
+    public static Object val;
+
+
+
 
     @FXML
     void initialize() {
@@ -72,6 +75,36 @@ public class Controller {
         cityColumn.setCellValueFactory(new PropertyValueFactory<>("cityColumn"));
         eventTable.setItems(eventList);
 
+    /*    eventTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+                if(eventTable.getSelectionModel().getSelectedItem() != null)
+                {
+                    TableView.TableViewSelectionModel<MainTable> selectionModel = eventTable.getSelectionModel();
+                    ObservableList selectedCells = selectionModel.getSelectedCells();
+                    TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+                    val = tablePosition.getTableColumn().getCellData(newValue);
+
+                    openModal("/com/example/event/bigEvent.fxml", String.valueOf(val));
+
+                }
+            }
+        });*/
+
+
+        eventTable.setRowFactory(tv -> {
+            TableRow<MainTable> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
+                    MainTable clickedRow = row.getItem();
+                    val = clickedRow.getEventColumn();
+                    openModal("/com/example/event/bigEvent.fxml", String.valueOf(val));
+                }
+            });
+            return row ;
+        });
+
 
     }
 
@@ -88,7 +121,8 @@ public class Controller {
         Stage stage = new Stage();
         stage.setScene((new Scene(root)));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Code");
+        stage.getIcons().add(new Image("file:src/main/resources/com/example/event/picture/icon.png"));
+        stage.setTitle("Login");
         stage.show();
     }
 
@@ -100,6 +134,23 @@ public class Controller {
             eventList.add(new MainTable(rs.getString("event"), rs.getDate("date"),
                     rs.getInt("days"), rs.getString("name")));
         }
+    }
+
+    private void openModal(String path, String title) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(path));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene((new Scene(root)));
+        stage.getIcons().add(new Image("file:src/main/resources/com/example/event/picture/icon.png"));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle(title);
+        stage.showAndWait();
     }
 
 
