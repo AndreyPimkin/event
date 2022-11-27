@@ -51,7 +51,7 @@ public class Organizator {
     @FXML
     void initialize() {
         myProf.setOnAction(actionEvent -> {
-            openModal("/com/example/event/profileOrg.fxml");
+            openModal("/com/example/event/profileOrg.fxml", "My profile");
         });
         image.setImage(new Image("file:src/main/resources/com/example/event/picture/org/"+Authorization.imageUser));
         LocalDateTime dateTime = LocalDateTime.now();
@@ -68,10 +68,13 @@ public class Organizator {
                     +Authorization.nameUser.substring(Authorization.nameUser.indexOf(' ') + 1));}
 
 
+        events.setOnAction(actionEvent -> {
+            openModal("/com/example/event/addEvent.fxml", "Event");
+        });
 
     }
 
-    private void openModal(String path) {
+    private void openModal(String path, String title) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(path));
         try {
@@ -84,8 +87,9 @@ public class Organizator {
         stage.setScene((new Scene(root)));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.getIcons().add(new Image("file:src/main/resources/com/example/event/picture/icon.png"));
-        stage.setTitle("My profile");
+        stage.setTitle(title);
         stage.showAndWait();
     }
+
 
 }

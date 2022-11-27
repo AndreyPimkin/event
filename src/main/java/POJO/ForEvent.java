@@ -16,6 +16,24 @@ public class ForEvent {
     private String jury5;
     private String Winner;
 
+    private String cityID;
+
+    public String getWinner() {
+        return Winner;
+    }
+
+    public void setWinner(String winner) {
+        Winner = winner;
+    }
+
+    public String getCityID() {
+        return cityID;
+    }
+
+    public void setCityID(String cityID) {
+        this.cityID = cityID;
+    }
+
     public String getNumber() {
         return number;
     }

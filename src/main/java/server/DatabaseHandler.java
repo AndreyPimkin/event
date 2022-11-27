@@ -56,6 +56,34 @@ public class DatabaseHandler extends Configs {
         return resSet;
     }
 
+    public ResultSet getModeratorEvent() {
+        ResultSet resSet = null;
+
+        String select = "SELECT * FROM moderator";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
+            resSet = prSt.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
+
+    public ResultSet getCityEvent() {
+        ResultSet resSet = null;
+
+        String select = "SELECT * FROM city";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
+            resSet = prSt.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
+
     public ResultSet getOrganizator(User user) {
         ResultSet resSet = null;
 
@@ -126,6 +154,22 @@ public class DatabaseHandler extends Configs {
         }
         return resSet;
     }
+
+    public ResultSet getMemberEvent() {
+        ResultSet resSet = null;
+
+        String select = "SELECT * FROM member";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select); // Выполняем запрос
+
+            resSet = prSt.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
+
 
 
     public ResultSet getName(User user) {
@@ -211,33 +255,62 @@ public class DatabaseHandler extends Configs {
     }
 
 
-    public void addEvent(ForEvent forEvent) {
-        String select = "INSERT INTO events (№, name, date_from, days, activity, day ," +
-                "time_from, moderator, jury_1, jury_2, jury_3, jury_4, jur_5) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    public void addAct(ForEvent forEvent) {
+        String select = "INSERT INTO act(number, name, date_from, days, activity, day, time_from, moderator, jury_1, " +
+                "jury_2, jury_3, jury_4, jury_5, winner) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
             prSt.setString(1, forEvent.getNumber());
             prSt.setString(2, forEvent.getName());
-            prSt.setString(3, forEvent.getDateTo());
-            prSt.setString(4, forEvent.getDays());
+            prSt.setString(3, forEvent.getDateFrom());
+            prSt.setString(4, forEvent.getDaysEvent());
             prSt.setString(5, forEvent.getActivity());
-            prSt.setString(6, forEvent.getDay());
-            prSt.setString(7, forEvent.getTime_to());
+            prSt.setString(6, forEvent.getDayActivity());
+            prSt.setString(7, forEvent.getTimeFrom());
             prSt.setString(8, forEvent.getModerator());
             prSt.setString(9, forEvent.getJury1());
             prSt.setString(10, forEvent.getJury2());
             prSt.setString(11, forEvent.getJury3());
             prSt.setString(12, forEvent.getJury4());
             prSt.setString(13, forEvent.getJury5());
+            prSt.setString(14, forEvent.getWinner());
             prSt.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public ResultSet getNameEvent() {
+    public void addEvent(ForEvent forEvent) {
+        String select = "INSERT INTO events(event, date, days, city_id) VALUES (?, ?, ?, ?) ";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, forEvent.getName());
+            prSt.setString(2, forEvent.getDateFrom());
+            prSt.setString(3, forEvent.getDaysEvent());
+            prSt.setString(4, forEvent.getCityID());
+            prSt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet getEvent(ForEvent forEvent) {
         ResultSet resSet = null;
-        String select = "SELECT event FROM events";
+        String select = "SELECT * FROM events WHERE event = ?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, forEvent.getName());
+            resSet = prSt.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
+
+    public ResultSet getJuryEvent() {
+        ResultSet resSet = null;
+        String select = "SELECT * FROM jury";
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
