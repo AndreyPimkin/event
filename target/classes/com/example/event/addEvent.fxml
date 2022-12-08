@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="650.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.AddEvent">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="650.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.AddEvent">
    <children>
       <Label alignment="CENTER" layoutX="52.0" layoutY="20.0" prefHeight="32.0" prefWidth="50.0" text="Номер">
          <font>
@@ -16,7 +16,6 @@
          </font>
       </Label>
       <ComboBox fx:id="city" layoutX="123.0" layoutY="144.0" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: none; -fx-border-color: gray;" styleClass="element" />
-      <DatePicker fx:id="fromDate" layoutX="399.0" layoutY="228.0" prefHeight="25.0" prefWidth="125.0" />
       <TextField fx:id="nameOne" layoutX="83.0" layoutY="319.0" prefWidth="225.0" styleClass="element" />
       <ComboBox fx:id="juryOne" layoutX="515.0" layoutY="318.0" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: none; -fx-border-color: gray;" styleClass="element" />
       <Button fx:id="okButton" layoutX="399.0" layoutY="462.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" styleClass="element" text="Ок">
