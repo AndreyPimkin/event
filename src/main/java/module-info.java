@@ -2,7 +2,7 @@ module com.example.event {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires org.junit.jupiter.api;
+    requires junit;
 
 
     opens com.example.event to javafx.fxml;
@@ -12,6 +12,9 @@ module com.example.event {
     opens POJO to javafx.fxml;
     exports server;
     opens server to javafx.fxml;
+
+    exports test;
+    opens test to javafx.fxml;
 
 
 }

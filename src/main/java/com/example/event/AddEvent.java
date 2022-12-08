@@ -39,7 +39,6 @@ public class AddEvent {
     private TextField event;
 
 
-
     @FXML
     private ComboBox<String> juryOne;
 
@@ -104,8 +103,6 @@ public class AddEvent {
 
 
     ForEvent forEvent = new ForEvent();
-    LocalDate dateOne;
-    LocalDate dateTwo;
     ResultSet rs;
 
     @FXML
@@ -127,90 +124,8 @@ public class AddEvent {
         juryThree.setOnAction(this::getJuryThree);
 
         addButton.setOnAction(actionEvent -> {
-            forEvent = new ForEvent();
-            forEvent.setName(event.getText());
-            dateOne = dateFrom.getValue();
-            dateTwo = dateTo.getValue();
-            rs =  dbHandler.getEvent(forEvent);
-            try {
-                if(!rs.next()){
-                    forEvent = new ForEvent();
-                    forEvent.setName(event.getText());
-                    forEvent.setDateFrom(String.valueOf(dateOne));
-                    forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
-                    forEvent.setCityID(selectCity.substring(selectCity.indexOf(" ") + 1));
-                    dbHandler.addEvent(forEvent);
-                    text.setStyle("-fx-text-fill:  black");
-                    text.setText("Событие добавлена");
-                }
-                else{
-                    forEvent = new ForEvent();
-                    forEvent.setNumber(number.getText() + "a");
-                    forEvent.setName(event.getText());
-                    forEvent.setDateFrom(String.valueOf(dateFrom.getValue()));
-                    forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
-                    forEvent.setActivity(nameOne.getText());
-                    forEvent.setDayActivity(dayOne.getText());
-                    forEvent.setTimeFrom(timeOne.getText());
-                    forEvent.setModerator(selectModerator);
-                    forEvent.setJury1(listJuryOne.get(0));
-                    forEvent.setJury2(listJuryOne.get(1));
-                    forEvent.setJury3(listJuryOne.get(2));
-                    forEvent.setJury4(listJuryOne.get(3));
-                    forEvent.setJury5(listJuryOne.get(4));
-                    if(selectWinner != null){
-                        forEvent.setWinner(selectWinner);
-                    }
-                    else {
-                        forEvent.setWinner("");
-                    }
-                    dbHandler.addAct(forEvent);
-
-                    forEvent = new ForEvent();
-                    forEvent.setNumber(number.getText() + "b");
-                    forEvent.setName(event.getText());
-                    forEvent.setDateFrom(String.valueOf(dateFrom.getValue()));
-                    forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
-                    forEvent.setActivity(nameTwo.getText());
-                    forEvent.setDayActivity(dayTwo.getText());
-                    forEvent.setTimeFrom(timeTwo.getText());
-                    forEvent.setModerator(selectModerator);
-                    forEvent.setJury1(listJuryTwo.get(0));
-                    forEvent.setJury2(listJuryTwo.get(1));
-                    forEvent.setJury3(listJuryTwo.get(2));
-                    forEvent.setJury4(listJuryTwo.get(3));
-                    forEvent.setJury5(listJuryTwo.get(4));
-                    forEvent.setWinner(" ");
-                    dbHandler.addAct(forEvent);
-
-                    forEvent = new ForEvent();
-                    forEvent.setNumber(number.getText() + "c");
-                    forEvent.setName(event.getText());
-                    forEvent.setDateFrom(String.valueOf(dateFrom.getValue()));
-                    forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
-                    forEvent.setActivity(nameThree.getText());
-                    forEvent.setDayActivity(dayThree.getText());
-                    forEvent.setTimeFrom(timeThree.getText());
-                    forEvent.setModerator(selectModerator);
-                    forEvent.setJury1(listJuryThree.get(0));
-                    forEvent.setJury2(listJuryThree.get(1));
-                    forEvent.setJury3(listJuryThree.get(2));
-                    forEvent.setJury4(listJuryThree.get(3));
-                    forEvent.setJury5(listJuryThree.get(4));
-                    forEvent.setWinner(" ");
-                    dbHandler.addAct(forEvent);
-
-                    text.setStyle("-fx-text-fill:  black");
-                    text.setText("Активноть добавлена");
-
-
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
 
         });
-
 
 
         okButton.setOnAction(actionEvent -> {
@@ -225,7 +140,7 @@ public class AddEvent {
         while (true) {
             assert rs != null;
             if (!rs.next()) break;
-            city.getItems().addAll(rs.getString("name") + " " +  rs.getString("city_id"));
+            city.getItems().addAll(rs.getString("name") + " " + rs.getString("city_id"));
         }
     }
 
@@ -272,39 +187,195 @@ public class AddEvent {
     }
 
     private void getJuryOne(ActionEvent actionEvent) {
-        if(listJuryOne.size() > 4){
+        if (listJuryOne.size() > 4) {
             text.setStyle("-fx-text-fill:  red");
             text.setText("Выберите 5 жюри");
-        }
-        else {
+        } else {
             listJuryOne.add(juryOne.getValue());
         }
 
     }
 
     private void getJuryTwo(ActionEvent actionEvent) {
-        if(listJuryTwo.size() > 4){
+        if (listJuryTwo.size() > 4) {
             text.setStyle("-fx-text-fill:  red");
             text.setText("Выберите 5 жюри");
-        }
-        else {
+        } else {
             listJuryTwo.add(juryTwo.getValue());
         }
 
     }
+
     private void getJuryThree(ActionEvent actionEvent) {
-        if(listJuryThree.size() > 4){
+        if (listJuryThree.size() > 4) {
             text.setStyle("-fx-text-fill:  red");
             text.setText("Выберите 5 жюри");
-        }
-        else {
+        } else {
             listJuryThree.add(juryThree.getValue());
         }
     }
 
 
+    public void addEv() {
+        String eventName = event.getText();
+        LocalDate dateOne = dateFrom.getValue();
+        LocalDate dateTwo = dateTo.getValue();
+        String selCity = selectCity;
+        String numberEvent = number.getText();
+        String nameOneAct = nameOne.getText();
+        String nameTwoAct = nameTwo.getText();
+        String nameThreeAct = nameThree.getText();
+        String dayOneAct = dayOne.getText();
+        String dayTwoAct = dayTwo.getText();
+        String dayThreeAct = dayThree.getText();
+        String timeOneAct = timeOne.getText();
+        String timeTwoAct = timeTwo.getText();
+        String timeThreeAct = timeThree.getText();
+        String selMod = selectModerator;
 
+        add(eventName, dateOne, dateTwo, selCity, numberEvent, nameOneAct, nameTwoAct, nameThreeAct, dayOneAct,
+                dayTwoAct, dayThreeAct, timeOneAct, timeTwoAct, timeThreeAct, selMod);
+    }
 
+    public String add(String eventName, LocalDate dateOne, LocalDate dateTwo, String selCity, String numberEvent,
+                      String nameOneAct, String nameTwoAct, String nameThreeAct,
+                      String dayOneAct, String dayTwoAct, String dayThreeAct,
+                      String timeOneAct, String timeTwoAct, String timeThreeAct, String selMod) {
+        forEvent = new ForEvent();
+        if (!eventName.equals("")) {
+            forEvent.setName(eventName);
+            rs = dbHandler.getEvent(forEvent);
+            try {
+                if (dateOne != null && dateTwo != null) {
+                    if (!selCity.equals("")) {
+                        if (!rs.next()) {
+                            forEvent = new ForEvent();
+                            forEvent.setName(eventName);
+                            forEvent.setDateFrom(String.valueOf(dateOne));
+                            forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
+                            forEvent.setCityID(selCity.substring(selCity.indexOf(" ") + 1));
+                            dbHandler.addEvent(forEvent);
+                          //  text.setStyle("-fx-text-fill:  black");
+                          //  text.setText("Мероприятие добавлено");
+                            return "Мероприятие добавлено";
+                        } else {
+                            if (!numberEvent.equals("")) {
+                                if (!nameOneAct.equals("") && !nameTwoAct.equals("") && !nameThreeAct.equals("")) {
+                                    if (!dayOneAct.equals("") && !dayTwoAct.equals("") && !dayThreeAct.equals("")) {
+                                        if (!timeOneAct.equals("")) {
+                                            if(!timeTwoAct.equals("")){
+                                                if(!timeThreeAct.equals("")){
+                                                    if (!selMod.equals("")) {
+                                                        forEvent = new ForEvent();
+                                                        forEvent.setNumber(numberEvent + "a");
+                                                        forEvent.setName(eventName);
+                                                        forEvent.setDateFrom(String.valueOf(dateOne));
+                                                        forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
+                                                        forEvent.setActivity(nameOneAct);
+                                                        forEvent.setDayActivity(dayOneAct);
+                                                        forEvent.setTimeFrom(timeOneAct);
+                                                        forEvent.setModerator(selMod);
+                                                        forEvent.setJury1(listJuryOne.get(0));
+                                                        forEvent.setJury2(listJuryOne.get(1));
+                                                        forEvent.setJury3(listJuryOne.get(2));
+                                                        forEvent.setJury4(listJuryOne.get(3));
+                                                        forEvent.setJury5(listJuryOne.get(4));
+                                                        if (selectWinner != null) {
+                                                            forEvent.setWinner(selectWinner);
+                                                        } else {
+                                                            forEvent.setWinner("");
+                                                        }
+                                                        dbHandler.addAct(forEvent);
 
+                                                        forEvent = new ForEvent();
+                                                        forEvent.setNumber(numberEvent + "b");
+                                                        forEvent.setName(eventName);
+                                                        forEvent.setDateFrom(String.valueOf(dateOne));
+                                                        forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
+                                                        forEvent.setActivity(nameTwoAct);
+                                                        forEvent.setDayActivity(dayTwoAct);
+                                                        forEvent.setTimeFrom(timeTwoAct);
+                                                        forEvent.setModerator(selMod);
+                                                        forEvent.setJury1(listJuryOne.get(0));
+                                                        forEvent.setJury2(listJuryOne.get(1));
+                                                        forEvent.setJury3(listJuryOne.get(2));
+                                                        forEvent.setJury4(listJuryOne.get(3));
+                                                        forEvent.setJury5(listJuryOne.get(4));
+                                                        forEvent.setWinner(" ");
+                                                        dbHandler.addAct(forEvent);
 
+                                                        forEvent = new ForEvent();
+                                                        forEvent.setNumber(numberEvent + "c");
+                                                        forEvent.setName(eventName);
+                                                        forEvent.setDateFrom(String.valueOf(dateOne));
+                                                        forEvent.setDaysEvent(String.valueOf((ChronoUnit.DAYS.between(dateOne, dateTwo) + 1)));
+                                                        forEvent.setActivity(nameThreeAct);
+                                                        forEvent.setDayActivity(dayThreeAct);
+                                                        forEvent.setTimeFrom(timeThreeAct);
+                                                        forEvent.setModerator(selMod);
+                                                        forEvent.setJury1(listJuryOne.get(0));
+                                                        forEvent.setJury2(listJuryOne.get(1));
+                                                        forEvent.setJury3(listJuryOne.get(2));
+                                                        forEvent.setJury4(listJuryOne.get(3));
+                                                        forEvent.setJury5(listJuryOne.get(4));
+                                                        forEvent.setWinner(" ");
+                                                        dbHandler.addAct(forEvent);
+
+                                                      //  text.setStyle("-fx-text-fill:  black");
+                                                       // text.setText("Активноть добавлена");
+                                                        return "Активность добавлена";
+
+                                                    } else {
+                                                      //  text.setText("Модератор не выбран");
+                                                        return "Модератор не выбран";
+                                                    }
+
+                                                }
+                                                else{
+                                                 //   text.setText("Время третьей активности не выбрана");
+                                                    return "Время третьей активности не выбрано";
+                                                }
+
+                                            }
+                                            else{
+                                              //  text.setText("Время второй активности не выбрана");
+                                                return "Время второй активности не выбрано";
+                                            }
+                                        } else {
+                                           // text.setText("Время первой активности не выбрана");
+                                            return "Время первой активности не выбрано";
+                                        }
+
+                                    } else {
+                                      //  text.setText("День активности не выбрана");
+                                        return "День активности не выбран";
+                                    }
+
+                                } else {
+                                   // text.setText("Имя активности не выбрана");
+                                    return "Имя активности не выбрано";
+                                }
+
+                            } else {
+                               // text.setText("Номер не выбран");
+                                return "Номер не выбран";
+                            }
+
+                        }
+                    } else {
+                        //text.setText("Вы не выбрали город");
+                        return "Вы не выбрали город";
+                    }
+                } else {
+                  //  text.setText("Вы не выбрали дату");
+                    return "Вы не выбрали дату";
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+           // text.setText("Вы не выбрали мероприятие");
+            return "Вы не выбрали мероприятие";
+        }
+    }
 }

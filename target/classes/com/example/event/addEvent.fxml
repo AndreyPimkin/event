@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="650.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.AddEvent">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="650.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.event.AddEvent">
    <children>
       <Label alignment="CENTER" layoutX="52.0" layoutY="20.0" prefHeight="32.0" prefWidth="50.0" text="Номер">
          <font>
@@ -94,7 +94,7 @@
       <TextField fx:id="nameThree" layoutX="82.0" layoutY="418.0" prefWidth="225.0" styleClass="element" />
       <ComboBox fx:id="juryTwo" layoutX="515.0" layoutY="369.0" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: none; -fx-border-color: gray;" styleClass="element" />
       <ComboBox fx:id="juryThree" layoutX="515.0" layoutY="417.0" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: none; -fx-border-color: gray;" styleClass="element" />
-      <Button fx:id="addButton" layoutX="40.0" layoutY="468.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="43.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" styleClass="element" text="+">
+      <Button fx:id="addButton" layoutX="40.0" layoutY="468.0" mnemonicParsing="false" onAction="#addEv" prefHeight="33.0" prefWidth="43.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-radius: 10;" styleClass="element" text="+">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
